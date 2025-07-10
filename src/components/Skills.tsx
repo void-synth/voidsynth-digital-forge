@@ -2,8 +2,11 @@
 import { Code, Palette, Database, Wrench } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const Skills = () => {
+  const { ref: sectionRef, isVisible } = useScrollReveal();
+
   const skillCategories = [
     {
       title: 'Frontend Development',
@@ -79,16 +82,16 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-background">
+    <section id="skills" className="py-20 bg-background" ref={sectionRef}>
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Skills & <span className="text-primary glow-text">Expertise</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             A comprehensive toolkit for creating exceptional digital experiences
           </p>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mt-6" />
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mt-6 glow-pulse" />
         </div>
 
         {/* Skills Grid */}
@@ -98,34 +101,39 @@ const Skills = () => {
             return (
               <Card 
                 key={category.title} 
-                className={`${category.bgColor} ${category.borderColor} border-2 animate-fade-in`}
-                style={{ animationDelay: `${index * 0.2}s` }}
+                className={`${category.bgColor} ${category.borderColor} border-2 hover-lift hover-glow transition-all duration-800 ${
+                  isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'
+                }`}
+                style={{ animationDelay: `${index * 0.2 + 0.2}s` }}
               >
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
-                    <IconComponent className={`h-6 w-6 ${category.color}`} />
-                    <span>{category.title}</span>
+                    <IconComponent className={`h-6 w-6 ${category.color} float-animation`} />
+                    <span className="hover:text-shimmer transition-all duration-300">{category.title}</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {category.skills.map((skill) => (
-                      <div key={skill.name}>
+                    {category.skills.map((skill, skillIndex) => (
+                      <div key={skill.name} className="hover-glow">
                         <div className="flex justify-between items-center mb-2">
-                          <span className="text-sm font-medium">{skill.name}</span>
-                          <span className={`text-sm font-bold ${category.color}`}>
+                          <span className="text-sm font-medium hover:text-shimmer transition-all duration-300">{skill.name}</span>
+                          <span className={`text-sm font-bold ${category.color} text-shimmer`}>
                             {skill.level}%
                           </span>
                         </div>
-                        <div className="w-full bg-muted rounded-full h-2">
+                        <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
                           <div 
-                            className={`h-2 rounded-full transition-all duration-1000 ${
+                            className={`h-2 rounded-full transition-all duration-1000 ease-out ${
                               category.title === 'Frontend Development' ? 'bg-primary' :
                               category.title === 'Backend Development' ? 'bg-accent' :
                               category.title === 'Design & UX' ? 'bg-purple-400' :
                               'bg-orange-400'
                             }`}
-                            style={{ width: `${skill.level}%` }}
+                            style={{ 
+                              width: isVisible ? `${skill.level}%` : '0%',
+                              transitionDelay: `${skillIndex * 0.1 + 0.5}s`
+                            }}
                           />
                         </div>
                       </div>
@@ -138,14 +146,15 @@ const Skills = () => {
         </div>
 
         {/* Certifications */}
-        <div className="text-center">
-          <h3 className="text-2xl font-bold mb-6 text-accent">Certifications & Achievements</h3>
+        <div className={`text-center transition-all duration-800 delay-800 ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}>
+          <h3 className="text-2xl font-bold mb-6 text-accent text-shimmer">Certifications & Achievements</h3>
           <div className="flex flex-wrap justify-center gap-3">
             {certifications.map((cert, index) => (
               <Badge 
                 key={cert} 
                 variant="outline" 
-                className="text-sm py-2 px-4 border-primary/30 text-primary hover:bg-primary/10 transition-colors duration-300"
+                className="text-sm py-2 px-4 border-primary/30 text-primary hover:bg-primary/10 transition-all duration-300 hover-lift hover-glow"
+                style={{ animationDelay: `${index * 0.1 + 1}s` }}
               >
                 {cert}
               </Badge>

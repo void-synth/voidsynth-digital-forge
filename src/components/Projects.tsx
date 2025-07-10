@@ -3,8 +3,11 @@ import { ExternalLink, Github, Award } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const Projects = () => {
+  const { ref: sectionRef, isVisible } = useScrollReveal();
+
   const featuredProjects = [
     {
       title: 'FraudMorph AI',
@@ -75,24 +78,26 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-secondary/20">
+    <section id="projects" className="py-20 bg-secondary/20" ref={sectionRef}>
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Featured <span className="text-primary glow-text">Projects</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             A showcase of innovative solutions that blend cutting-edge technology with user-centered design
           </p>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mt-6" />
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mt-6 glow-pulse" />
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
           {featuredProjects.map((project, index) => (
             <Card 
               key={project.title} 
-              className="group bg-card/50 border-muted/20 hover:border-primary/30 transition-all duration-500 overflow-hidden animate-fade-in"
-              style={{ animationDelay: `${index * 0.2}s` }}
+              className={`group bg-card/50 border-muted/20 hover:border-primary/30 transition-all duration-500 overflow-hidden hover-lift hover-glow ${
+                isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'
+              }`}
+              style={{ animationDelay: `${index * 0.2 + 0.2}s` }}
             >
               {/* Project Image */}
               <div className="h-48 overflow-hidden relative">
@@ -106,8 +111,8 @@ const Projects = () => {
                 {/* Status Badge */}
                 {project.status === 'award' && (
                   <div className="absolute top-4 right-4">
-                    <Badge className="bg-accent text-accent-foreground">
-                      <Award className="h-3 w-3 mr-1" />
+                    <Badge className="bg-accent text-accent-foreground hover-glow">
+                      <Award className="h-3 w-3 mr-1 float-animation" />
                       Award Winner
                     </Badge>
                   </div>
@@ -117,31 +122,36 @@ const Projects = () => {
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">
+                    <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors text-shimmer">
                       {project.title}
                     </CardTitle>
-                    <p className="text-sm text-accent font-medium mb-2">{project.role}</p>
+                    <p className="text-sm text-accent font-medium mb-2 hover:text-shimmer transition-all duration-300">{project.role}</p>
                   </div>
                 </div>
                 
                 {project.award && (
-                  <div className="text-xs text-muted-foreground italic">
+                  <div className="text-xs text-muted-foreground italic hover-glow">
                     🏆 {project.award}
                   </div>
                 )}
               </CardHeader>
 
               <CardContent className="space-y-4">
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed hover-glow">
                   {project.description}
                 </p>
 
                 {/* Tech Stack */}
                 <div>
-                  <h4 className="text-sm font-semibold mb-2">Tech Stack:</h4>
+                  <h4 className="text-sm font-semibold mb-2 text-shimmer">Tech Stack:</h4>
                   <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech) => (
-                      <Badge key={tech} variant="outline" className="text-xs">
+                    {project.tech.map((tech, techIndex) => (
+                      <Badge 
+                        key={tech} 
+                        variant="outline" 
+                        className="text-xs hover-lift hover-glow"
+                        style={{ animationDelay: `${techIndex * 0.05}s` }}
+                      >
                         {tech}
                       </Badge>
                     ))}
@@ -150,11 +160,11 @@ const Projects = () => {
 
                 {/* Key Features */}
                 <div>
-                  <h4 className="text-sm font-semibold mb-2">Key Features:</h4>
+                  <h4 className="text-sm font-semibold mb-2 text-shimmer">Key Features:</h4>
                   <ul className="text-sm text-muted-foreground space-y-1">
                     {project.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center">
-                        <div className="w-1 h-1 bg-primary rounded-full mr-2" />
+                      <li key={idx} className="flex items-center hover-glow">
+                        <div className="w-1 h-1 bg-primary rounded-full mr-2 float-animation" />
                         {feature}
                       </li>
                     ))}
@@ -165,24 +175,24 @@ const Projects = () => {
                 <div className="flex gap-3 pt-4">
                   <Button 
                     size="sm" 
-                    className="flex-1 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30"
+                    className="flex-1 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 hover-lift group"
                     asChild
                   >
                     <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Live Demo
+                      <ExternalLink className="h-4 w-4 mr-2 group-hover:animate-pulse" />
+                      <span className="group-hover:text-shimmer transition-all duration-300">Live Demo</span>
                     </a>
                   </Button>
                   
                   <Button 
                     size="sm" 
                     variant="outline" 
-                    className="flex-1 border-accent/30 text-accent hover:bg-accent/10"
+                    className="flex-1 border-accent/30 text-accent hover:bg-accent/10 hover-lift group"
                     asChild
                   >
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-4 w-4 mr-2" />
-                      Source Code
+                      <Github className="h-4 w-4 mr-2 group-hover:animate-pulse" />
+                      <span className="group-hover:text-shimmer transition-all duration-300">Source Code</span>
                     </a>
                   </Button>
                 </div>
@@ -192,16 +202,16 @@ const Projects = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16">
-          <p className="text-muted-foreground mb-6">
+        <div className={`text-center mt-16 transition-all duration-800 delay-1000 ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}>
+          <p className="text-muted-foreground mb-6 hover-glow">
             Want to see more of my work or discuss a potential collaboration?
           </p>
           <Button 
             size="lg" 
-            className="bg-primary hover:bg-primary/90 text-primary-foreground px-8"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 hover-lift group"
           >
-            View All Projects
-            <ExternalLink className="ml-2 h-5 w-5" />
+            <span className="group-hover:text-shimmer transition-all duration-300">View All Projects</span>
+            <ExternalLink className="ml-2 h-5 w-5 group-hover:animate-bounce" />
           </Button>
         </div>
       </div>

@@ -2,8 +2,11 @@
 import { Trophy, Award, Medal, Star, Calendar } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const Achievements = () => {
+  const { ref: sectionRef, isVisible } = useScrollReveal();
+
   const achievements = [
     {
       title: 'ShadowCode Hackathon',
@@ -75,16 +78,16 @@ const Achievements = () => {
   ];
 
   return (
-    <section id="achievements" className="py-20 bg-background">
+    <section id="achievements" className="py-20 bg-background" ref={sectionRef}>
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Achievements & <span className="text-primary glow-text">Recognition</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Celebrating excellence in innovation, competition, and technical mastery
           </p>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mt-6" />
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mt-6 glow-pulse" />
         </div>
 
         {/* Stats Overview */}
@@ -94,12 +97,14 @@ const Achievements = () => {
             return (
               <Card 
                 key={stat.label} 
-                className="bg-card/30 border-muted/20 text-center animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className={`bg-card/30 border-muted/20 text-center hover-lift hover-glow transition-all duration-800 ${
+                  isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'
+                }`}
+                style={{ animationDelay: `${index * 0.1 + 0.2}s` }}
               >
                 <CardContent className="p-6">
-                  <IconComponent className="h-8 w-8 text-primary mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-primary mb-1">{stat.value}</div>
+                  <IconComponent className="h-8 w-8 text-primary mx-auto mb-2 float-animation" />
+                  <div className="text-2xl font-bold text-primary mb-1 text-shimmer">{stat.value}</div>
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </CardContent>
               </Card>
@@ -114,19 +119,21 @@ const Achievements = () => {
             return (
               <Card 
                 key={achievement.title} 
-                className={`${achievement.bgColor} ${achievement.borderColor} border-2 animate-fade-in`}
-                style={{ animationDelay: `${index * 0.2}s` }}
+                className={`${achievement.bgColor} ${achievement.borderColor} border-2 hover-lift hover-glow transition-all duration-800 ${
+                  isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'
+                }`}
+                style={{ animationDelay: `${index * 0.2 + 0.6}s` }}
               >
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
                       <div className={`p-3 rounded-full ${achievement.bgColor}`}>
-                        <IconComponent className={`h-6 w-6 ${achievement.color}`} />
+                        <IconComponent className={`h-6 w-6 ${achievement.color} float-animation`} />
                       </div>
                       <div>
-                        <CardTitle className="text-xl mb-1">{achievement.title}</CardTitle>
+                        <CardTitle className="text-xl mb-1 text-shimmer">{achievement.title}</CardTitle>
                         <div className="flex items-center gap-3">
-                          <Badge className={`${achievement.color} bg-transparent border-current`}>
+                          <Badge className={`${achievement.color} bg-transparent border-current hover-glow`}>
                             {achievement.position}
                           </Badge>
                           <div className="flex items-center text-sm text-muted-foreground">
@@ -141,15 +148,20 @@ const Achievements = () => {
 
                 <CardContent className="grid md:grid-cols-3 gap-6">
                   <div className="md:col-span-2 space-y-4">
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed hover-glow">
                       {achievement.description}
                     </p>
                     
                     <div>
-                      <h4 className="text-sm font-semibold mb-2">Technologies Used:</h4>
+                      <h4 className="text-sm font-semibold mb-2 text-shimmer">Technologies Used:</h4>
                       <div className="flex flex-wrap gap-2">
-                        {achievement.tech.map((tech) => (
-                          <Badge key={tech} variant="outline" className="text-xs">
+                        {achievement.tech.map((tech, techIndex) => (
+                          <Badge 
+                            key={tech} 
+                            variant="outline" 
+                            className="text-xs hover-lift hover-glow"
+                            style={{ animationDelay: `${techIndex * 0.05}s` }}
+                          >
                             {tech}
                           </Badge>
                         ))}
@@ -159,8 +171,8 @@ const Achievements = () => {
 
                   <div className="space-y-3">
                     <div>
-                      <h4 className="text-sm font-semibold text-accent mb-1">Prize & Recognition</h4>
-                      <p className="text-sm text-muted-foreground">{achievement.prize}</p>
+                      <h4 className="text-sm font-semibold text-accent mb-1 text-shimmer">Prize & Recognition</h4>
+                      <p className="text-sm text-muted-foreground hover-glow">{achievement.prize}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -170,8 +182,10 @@ const Achievements = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16 p-8 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg">
-          <h3 className="text-2xl font-bold mb-4">Ready to Create Something Amazing?</h3>
+        <div className={`text-center mt-16 p-8 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg hover-lift hover-glow transition-all duration-800 delay-1200 ${
+          isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'
+        }`}>
+          <h3 className="text-2xl font-bold mb-4 text-shimmer">Ready to Create Something Amazing?</h3>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
             With a proven track record of winning competitions and delivering innovative solutions, 
             I'm ready to bring that same excellence to your next project.
