@@ -129,7 +129,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-20 bg-secondary/20 contact-animate">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Let's <span className="text-primary glow-text">Connect</span>
@@ -140,7 +140,7 @@ const Contact = () => {
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mt-6" />
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <div className="space-y-8 animate-slide-in-left">
             <div>

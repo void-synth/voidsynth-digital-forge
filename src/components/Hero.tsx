@@ -75,7 +75,7 @@ const Hero = () => {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid px-2 sm:px-4">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
       
@@ -88,7 +88,7 @@ const Hero = () => {
         }}
       />
       
-      <div className="container mx-auto px-6 text-center relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
         <div className="reveal-on-scroll revealed">
           {/* Logo/Brand */}
           <div className="mb-8">

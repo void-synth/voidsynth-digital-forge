@@ -38,10 +38,10 @@ const Footer = () => {
 
   return (
     <footer className="bg-card/30 border-t border-border/50">
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {/* Brand Section */}
-          <div className="md:col-span-2">
+          <div className="md:col-span-2 flex flex-col items-start">
             <div className="mb-4">
               <h3 className="text-2xl font-bold font-mono">
                 <span className="text-primary glow-text">Void</span>
@@ -52,9 +52,8 @@ const Footer = () => {
               Crafting digital experiences through innovative code and stunning design. 
               Based in Lagos, Nigeria, serving clients worldwide.
             </p>
-            
             {/* Social Links */}
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 mb-4 sm:mb-0">
               {socialLinks.map((social) => {
                 const IconComponent = social.icon;
                 return (
@@ -108,14 +107,12 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-border/50 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-muted-foreground text-sm mb-4 md:mb-0 flex items-center">
-              <span>© {currentYear} VoidSynth. Built with</span>
-              <Heart className="h-4 w-4 mx-2 text-red-400 fill-current" />
-              <span>in Lagos, Nigeria</span>
+        <div className="border-t border-border/50 mt-8 sm:mt-12 pt-6 sm:pt-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0 text-center sm:text-left">
+            <div className="text-muted-foreground text-sm mb-2 sm:mb-0 flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
+              <span>© {currentYear} VoidSynth. All rights reserved.</span>
+              <span>Crafted with passion in Lagos, Nigeria</span>
             </div>
-            
             <div className="flex items-center text-sm text-muted-foreground">
               <span>Powered by React & Tailwind CSS</span>
               <ExternalLink className="h-3 w-3 ml-1" />

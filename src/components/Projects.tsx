@@ -39,7 +39,7 @@ const Projects = () => {
         'Tamper-proof authentication'
       ],
       github: 'https://github.com/voidsynth/chainproof',
-      demo: 'https://chainproof-blue.vercel.app/',
+      demo: 'https://chain-proof-seven.vercel.app/', // updated link
       status: 'award',
       award: 'Winner - ChainProof Hackathon'
     },
@@ -96,7 +96,7 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-20 bg-secondary/20" ref={sectionRef}>
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Featured <span className="text-primary glow-text">Projects</span>
@@ -107,7 +107,7 @@ const Projects = () => {
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mt-6 glow-pulse" />
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {featuredProjects.map((project, index) => (
             <Card 
               key={project.title} 

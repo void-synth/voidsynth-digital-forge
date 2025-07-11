@@ -31,7 +31,7 @@ const About = () => {
 
   return (
     <section id="about" className="py-20 bg-secondary/20" ref={sectionRef}>
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             About <span className="text-primary glow-text">VoidSynth</span>
@@ -39,7 +39,7 @@ const About = () => {
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full glow-pulse" />
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Bio Content */}
           <div className={`space-y-6 transition-all duration-800 delay-200 ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}>
             <div className="space-y-4">

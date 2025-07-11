@@ -86,7 +86,7 @@ const Skills = () => {
     <section id="skills" className="py-20 bg-background relative overflow-hidden" ref={sectionRef}>
       {/* Animated Background Gradient */}
       <div className="absolute inset-0 z-0 animate-gradient bg-gradient-to-br from-primary/10 via-accent/10 to-background pointer-events-none" />
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'reveal-on-scroll revealed fade-in-up' : 'reveal-on-scroll'}`}> {/* fade-in-up for heading */}
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Skills & <span className="text-primary glow-text">Expertise</span>
@@ -98,7 +98,7 @@ const Skills = () => {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {skillCategories.map((category, index) => {
             const IconComponent = category.icon;
             return (
