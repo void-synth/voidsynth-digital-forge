@@ -27,6 +27,23 @@ const Projects = () => {
       award: 'Best AI Innovation - TechCrunch Disrupt'
     },
     {
+      title: 'ChainProof',
+      role: 'Blockchain Developer & Security Engineer',
+      description: 'Blockchain-based document verification system with cryptographic proof of authenticity. Ensures tamper-proof document validation and secure certificate management.',
+      image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=500&h=300&fit=crop',
+      tech: ['Solidity', 'Web3.js', 'React', 'Node.js', 'IPFS'],
+      features: [
+        'Document verification system',
+        'Cryptographic proof validation',
+        'Blockchain certificate storage',
+        'Tamper-proof authentication'
+      ],
+      github: 'https://github.com/voidsynth/chainproof',
+      demo: 'https://chainproof-blue.vercel.app/',
+      status: 'award',
+      award: 'Winner - ChainProof Hackathon'
+    },
+    {
       title: 'MURIM Platform',
       role: 'Fullstack Developer & UX Designer',
       description: 'Comprehensive martial arts learning management system with video streaming, progress tracking, and community features.',
