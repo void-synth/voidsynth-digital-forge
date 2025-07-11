@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import './SkillsAnimations.css'; // Import custom CSS for extra animations
+import { useRef } from 'react';
 
 const Skills = () => {
   const { ref: sectionRef, isVisible } = useScrollReveal();
@@ -82,6 +83,26 @@ const Skills = () => {
     'UI/UX Design Excellence'
   ];
 
+  // 3D tilt effect handler
+  function handleTilt(e, cardRef) {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
+    const y = e.type.startsWith('touch') ? e.touches[0].clientY : e.clientY;
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const deltaX = x - centerX;
+    const deltaY = y - centerY;
+    const rotateX = (deltaY / rect.height) * 12;
+    const rotateY = -(deltaX / rect.width) * 12;
+    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03,1.03,1.03)`;
+  }
+  function resetTilt(cardRef) {
+    const card = cardRef.current;
+    if (card) card.style.transform = '';
+  }
+
   return (
     <section id="skills" className="py-20 bg-background relative overflow-hidden" ref={sectionRef}>
       {/* Animated Background Gradient */}
@@ -101,11 +122,17 @@ const Skills = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {skillCategories.map((category, index) => {
             const IconComponent = category.icon;
+            const cardRef = useRef(null);
             return (
               <Card 
                 key={category.title} 
-                className={`${category.bgColor} ${category.borderColor} border-2 hover-lift hover-glow transition-all duration-800 skill-card ${isVisible ? 'fade-in-up' : ''}`}
+                ref={cardRef}
+                className={`${category.bgColor} ${category.borderColor} border-2 hover-lift hover-glow transition-all duration-800 skill-card tilt-card ${isVisible ? 'fade-in-up' : ''}`}
                 style={{ animationDelay: `${index * 0.2 + 0.2}s` }}
+                onMouseMove={e => handleTilt(e, cardRef)}
+                onMouseLeave={() => resetTilt(cardRef)}
+                onTouchMove={e => handleTilt(e, cardRef)}
+                onTouchEnd={() => resetTilt(cardRef)}
               >
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">

@@ -63,4 +63,27 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+/* 3D tilt card effect */
+.tilt-card {
+  will-change: transform;
+  transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 4px 24px 0 rgba(0,255,255,0.08), 0 1.5px 6px 0 rgba(0,128,255,0.08);
+}
+.tilt-card:active {
+  transform: scale3d(0.98,0.98,0.98) !important;
+}
+
+/* 3D neon/extruded text effect for hero title */
+.hero-3d-title {
+  text-shadow:
+    0 2px 8px #00ffff99,
+    0 4px 16px #0080ff44,
+    0 1px 0 #222,
+    0 2px 0 #222,
+    0 3px 0 #111,
+    0 4px 0 #111;
+  transform: perspective(600px) rotateX(6deg) scale3d(1.04,1.04,1.04);
+  letter-spacing: 0.01em;
 } 

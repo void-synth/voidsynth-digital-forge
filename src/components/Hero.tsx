@@ -4,6 +4,8 @@ import { ArrowDown, Download, Mail, Github, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import ThreeDButton from "./ui/three-d-button";
+import "./ui/three-d-button.css";
 
 const Hero = () => {
   const [currentTitle, setCurrentTitle] = useState(0);
@@ -76,6 +78,7 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid px-2 sm:px-4">
+      <div className="animated-bg" />
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
       
@@ -92,7 +95,7 @@ const Hero = () => {
         <div className="reveal-on-scroll revealed">
           {/* Logo/Brand */}
           <div className="mb-8">
-            <h1 className="text-6xl md:text-8xl font-bold font-mono mb-4 hover-glow">
+            <h1 className="text-6xl md:text-8xl font-bold font-mono mb-4 hover-glow hero-3d-title">
               <span className="text-primary glow-text text-shimmer">Void</span>
               <span className="text-accent float-animation">Synth</span>
             </h1>
@@ -157,6 +160,11 @@ const Hero = () => {
             >
               <Linkedin className="h-6 w-6" />
             </a>
+          </div>
+
+          {/* Explore More Button */}
+          <div className="mt-8 flex justify-center">
+            <ThreeDButton>Explore More</ThreeDButton>
           </div>
         </div>
       </div>

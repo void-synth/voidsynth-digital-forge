@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { useRef } from 'react';
 
 const Projects = () => {
   const { ref: sectionRef, isVisible } = useScrollReveal();
@@ -94,6 +95,26 @@ const Projects = () => {
     }
   ];
 
+  // 3D tilt effect handler
+  function handleTilt(e, cardRef) {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
+    const y = e.type.startsWith('touch') ? e.touches[0].clientY : e.clientY;
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const deltaX = x - centerX;
+    const deltaY = y - centerY;
+    const rotateX = (deltaY / rect.height) * 12;
+    const rotateY = -(deltaX / rect.width) * 12;
+    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03,1.03,1.03)`;
+  }
+  function resetTilt(cardRef) {
+    const card = cardRef.current;
+    if (card) card.style.transform = '';
+  }
+
   return (
     <section id="projects" className="py-20 bg-secondary/20" ref={sectionRef}>
       <div className="container mx-auto px-4 sm:px-6">
@@ -108,14 +129,19 @@ const Projects = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {featuredProjects.map((project, index) => (
-            <Card 
-              key={project.title} 
-              className={`group bg-card/50 border-muted/20 hover:border-primary/30 transition-all duration-500 overflow-hidden hover-lift hover-glow ${
-                isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'
-              }`}
-              style={{ animationDelay: `${index * 0.2 + 0.2}s` }}
-            >
+          {featuredProjects.map((project, index) => {
+            const cardRef = useRef(null);
+            return (
+              <Card 
+                key={project.title} 
+                ref={cardRef}
+                className={`group bg-card/50 border-muted/20 hover:border-primary/30 transition-all duration-500 overflow-hidden hover-lift hover-glow tilt-card ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}
+                style={{ animationDelay: `${index * 0.2 + 0.2}s` }}
+                onMouseMove={e => handleTilt(e, cardRef)}
+                onMouseLeave={() => resetTilt(cardRef)}
+                onTouchMove={e => handleTilt(e, cardRef)}
+                onTouchEnd={() => resetTilt(cardRef)}
+              >
               {/* Project Image */}
               <div className="h-48 overflow-hidden relative">
                 <img 
@@ -217,7 +243,8 @@ const Projects = () => {
                 </div>
               </CardContent>
             </Card>
-          ))}
+          );
+        })}
         </div>
 
         {/* Call to Action */}
