@@ -6,6 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { FaWhatsapp } from 'react-icons/fa'; // WhatsApp icon
+import './ContactAnimations.css'; // Custom animations
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -24,19 +26,51 @@ const Contact = () => {
     });
   };
 
+  // Formspree endpoint for your email
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xgvygpal';
+
+  const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setFormStatus('idle');
 
-    // Simulate form submission
-    setTimeout(() => {
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for reaching out. I'll get back to you within 24 hours.",
+    const data = {
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    };
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
       });
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setIsSubmitting(false);
-    }, 2000);
+      if (response.ok) {
+        setFormStatus('success');
+        toast({
+          title: 'Message Sent!',
+          description: "Thank you for reaching out. I'll get back to you within 24 hours.",
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setFormStatus('error');
+        toast({
+          title: 'Error',
+          description: 'There was a problem sending your message. Please try again later.',
+        });
+      }
+    } catch (error) {
+      setFormStatus('error');
+      toast({
+        title: 'Error',
+        description: 'There was a problem sending your message. Please try again later.',
+      });
+    }
+    setIsSubmitting(false);
   };
 
   const contactInfo = [
@@ -49,8 +83,14 @@ const Contact = () => {
     {
       icon: Phone,
       label: 'Phone',
-      value: '+234 (0) 123 456 789',
-      href: 'tel:+2341234567890'
+      value: '+2348028760014',
+      href: 'tel:+2348028760014'
+    },
+    {
+      icon: FaWhatsapp,
+      label: 'WhatsApp',
+      value: '+2348028760014',
+      href: 'https://wa.me/2348028760014?text=Hi%20VoidSynth!%20I%20found%20your%20portfolio%20and%20would%20like%20to%20connect.'
     },
     {
       icon: MapPin,
@@ -78,11 +118,17 @@ const Contact = () => {
       label: 'Twitter',
       href: 'https://twitter.com/voidsynth',
       color: 'hover:text-blue-400'
+    },
+    {
+      icon: FaWhatsapp,
+      label: 'WhatsApp',
+      href: 'https://wa.me/2348028760014?text=Hi%20VoidSynth!%20I%20found%20your%20portfolio%20and%20would%20like%20to%20connect.',
+      color: 'hover:text-green-400'
     }
   ];
 
   return (
-    <section id="contact" className="py-20 bg-secondary/20">
+    <section id="contact" className="py-20 bg-secondary/20 contact-animate">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -165,7 +211,7 @@ const Contact = () => {
                   className="bg-primary hover:bg-primary/90"
                   asChild
                 >
-                  <a href="mailto:umarboluwatife01@gmail.com">
+                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=umarboluwatife01@gmail.com&su=Contact%20from%20Portfolio&body=Hi%20VoidSynth%2C%0D%0A%0D%0AI'd%20like%20to%20connect%20about..." target="_blank" rel="noopener noreferrer">
                     <Mail className="h-4 w-4 mr-2" />
                     Email Me Directly
                   </a>
@@ -262,6 +308,12 @@ const Contact = () => {
                     </>
                   )}
                 </Button>
+                {formStatus === 'success' && (
+                  <div className="text-green-500 text-center mt-2">Message sent successfully!</div>
+                )}
+                {formStatus === 'error' && (
+                  <div className="text-red-500 text-center mt-2">There was an error sending your message. Please try again later.</div>
+                )}
               </form>
             </CardContent>
           </Card>

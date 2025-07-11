@@ -21,8 +21,8 @@ const Projects = () => {
         'Administrative dashboard',
         'API integration'
       ],
-      github: 'https://github.com/voidsynth/fraudmorph-ai',
-      demo: 'https://fraudmorph.voidsynth.dev',
+      github: '/source-private.html', // private source
+      demo: 'https://fraudmorph-sentinel-ai.vercel.app/',
       status: 'award',
       award: 'Best AI Innovation - TechCrunch Disrupt'
     },
@@ -55,8 +55,8 @@ const Projects = () => {
         'Community forums',
         'Mobile responsive design'
       ],
-      github: 'https://github.com/voidsynth/murim-platform',
-      demo: 'https://murim.voidsynth.dev',
+      github: '/source-private.html', // private source
+      demo: '/murim-private.html', // updated to local info page
       status: 'featured'
     },
     {
@@ -71,8 +71,8 @@ const Projects = () => {
         'Report generation',
         'Security assessment tools'
       ],
-      github: 'https://github.com/voidsynth/shadowcode',
-      demo: 'https://shadowcode.voidsynth.dev',
+      github: '/source-private.html', // private source
+      demo: 'https://shadowcode-seven.vercel.app/', // updated live demo link
       status: 'award',
       award: 'Winner - ShadowCode Hackathon 2023'
     },
@@ -88,8 +88,8 @@ const Projects = () => {
         'Real-time trading signals',
         'Performance analytics'
       ],
-      github: 'https://github.com/voidsynth/forex-ai',
-      demo: 'https://forex-ai.voidsynth.dev',
+      github: '/source-private.html', // private source
+      demo: '/forex-private.html', // private live demo
       status: 'featured'
     }
   ];
@@ -200,16 +200,18 @@ const Projects = () => {
                       <span className="group-hover:text-shimmer transition-all duration-300">Live Demo</span>
                     </a>
                   </Button>
-                  
                   <Button 
                     size="sm" 
-                    variant="outline" 
-                    className="flex-1 border-accent/30 text-accent hover:bg-accent/10 hover-lift group"
+                    className={`flex-1 border border-muted/30 hover:border-primary/30 hover-lift group ${project.github === '/source-private.html' ? 'opacity-70 cursor-not-allowed' : ''}`}
                     asChild
+                    title={project.github === '/source-private.html' ? 'Private Source Code – Not Publicly Available' : 'View Source Code on GitHub'}
                   >
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-4 w-4 mr-2 group-hover:animate-pulse" />
-                      <span className="group-hover:text-shimmer transition-all duration-300">Source Code</span>
+                      {project.github === '/source-private.html' ? (
+                        <span className="flex items-center"><span style={{fontSize:'1.1em',marginRight:'0.3em'}}>🔒</span>Private Source</span>
+                      ) : (
+                        <span className="flex items-center"><Github className="h-4 w-4 mr-2" />Source Code</span>
+                      )}
                     </a>
                   </Button>
                 </div>
@@ -226,9 +228,12 @@ const Projects = () => {
           <Button 
             size="lg" 
             className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 hover-lift group"
+            asChild
           >
-            <span className="group-hover:text-shimmer transition-all duration-300">View All Projects</span>
-            <ExternalLink className="ml-2 h-5 w-5 group-hover:animate-bounce" />
+            <a href="https://github.com/void-synth" target="_blank" rel="noopener noreferrer">
+              <span className="group-hover:text-shimmer transition-all duration-300">View All Projects</span>
+              <ExternalLink className="ml-2 h-5 w-5 group-hover:animate-bounce" />
+            </a>
           </Button>
         </div>
       </div>
