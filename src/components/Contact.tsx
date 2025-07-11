@@ -43,8 +43,8 @@ const Contact = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'contact@voidsynth.dev',
-      href: 'mailto:contact@voidsynth.dev'
+      value: 'umarboluwatife01@gmail.com',
+      href: 'mailto:umarboluwatife01@gmail.com'
     },
     {
       icon: Phone,
@@ -64,7 +64,7 @@ const Contact = () => {
     {
       icon: Github,
       label: 'GitHub',
-      href: 'https://github.com/voidsynth',
+      href: 'https://github.com/void-synth',
       color: 'hover:text-primary'
     },
     {
@@ -165,7 +165,7 @@ const Contact = () => {
                   className="bg-primary hover:bg-primary/90"
                   asChild
                 >
-                  <a href="mailto:contact@voidsynth.dev">
+                  <a href="mailto:umarboluwatife01@gmail.com">
                     <Mail className="h-4 w-4 mr-2" />
                     Email Me Directly
                   </a>

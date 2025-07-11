@@ -1,0 +1,66 @@
+/* Animated gradient background */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientMove 8s ease-in-out infinite;
+}
+
+/* Fade in up animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Staggered animation for skill cards and badges */
+.skill-card.fade-in-up {
+  animation-delay: var(--card-delay, 0.2s);
+}
+.badge-anim.fade-in-up {
+  animation-delay: var(--badge-delay, 0.2s);
+}
+
+/* Animated icon (pulse and rotate) */
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1) rotate(-8deg); }
+  50% { transform: scale(1.15) rotate(8deg); }
+}
+.icon-anim {
+  animation: iconPulse 2.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Skill bar bounce at end */
+@keyframes barFillBounce {
+  0% { width: 0%; }
+  80% { width: var(--bar-width, 100%); }
+  100% { width: calc(var(--bar-width, 100%) + 2%); }
+}
+.bar-fill-bounce {
+  animation: barFillBounce 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Utility for icon wrapper */
+.icon-anim-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+} 

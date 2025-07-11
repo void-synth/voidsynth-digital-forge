@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { ArrowDown, Download, Mail, Github, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 const Hero = () => {
   const [currentTitle, setCurrentTitle] = useState(0);
@@ -51,6 +53,26 @@ const Hero = () => {
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const resumeImages = [
+    '/resume-page-1.jpg',
+    '/resume-page-2.jpg',
+    '/resume-page-3.jpg',
+  ];
+
+  async function downloadResumeAsZip() {
+    const zip = new JSZip();
+    const folder = zip.folder('VoidSynth-Resume');
+    await Promise.all(
+      resumeImages.map(async (url, idx) => {
+        const response = await fetch(url);
+        const blob = await response.blob();
+        folder?.file(`resume-page-${idx + 1}.jpg`, blob);
+      })
+    );
+    const content = await zip.generateAsync({ type: 'blob' });
+    saveAs(content, 'VoidSynth-Resume.zip');
+  }
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid">
@@ -105,6 +127,7 @@ const Hero = () => {
               size="lg" 
               variant="outline"
               className="border-accent text-accent hover:bg-accent hover:text-accent-foreground font-semibold px-8 py-3 transition-all duration-300 hover-lift group"
+              onClick={downloadResumeAsZip}
             >
               <Download className="mr-2 h-5 w-5 group-hover:animate-pulse" />
               <span className="group-hover:text-shimmer transition-all duration-300">Download Resume</span>
@@ -114,14 +137,14 @@ const Hero = () => {
           {/* Social Links */}
           <div className="flex justify-center space-x-6 slide-up stagger-4">
             <a 
-              href="mailto:contact@voidsynth.dev" 
+              href="mailto:umarboluwatife01@gmail.com" 
               className="text-muted-foreground hover:text-primary transition-all duration-300 p-2 rounded-full hover:bg-primary/10 hover-lift hover-glow"
               aria-label="Email"
             >
               <Mail className="h-6 w-6" />
             </a>
             <a 
-              href="https://github.com/voidsynth" 
+              href="https://github.com/void-synth" 
               className="text-muted-foreground hover:text-primary transition-all duration-300 p-2 rounded-full hover:bg-primary/10 hover-lift hover-glow"
               aria-label="GitHub"
             >

@@ -3,9 +3,31 @@ import { Award, Download, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 const About = () => {
   const { ref: sectionRef, isVisible } = useScrollReveal();
+
+  const resumeImages = [
+    '/resume-page-1.jpg',
+    '/resume-page-2.jpg',
+    '/resume-page-3.jpg',
+  ];
+
+  async function downloadResumeAsZip() {
+    const zip = new JSZip();
+    const folder = zip.folder('VoidSynth-Resume');
+    await Promise.all(
+      resumeImages.map(async (url, idx) => {
+        const response = await fetch(url);
+        const blob = await response.blob();
+        folder?.file(`resume-page-${idx + 1}.jpg`, blob);
+      })
+    );
+    const content = await zip.generateAsync({ type: 'blob' });
+    saveAs(content, 'VoidSynth-Resume.zip');
+  }
 
   return (
     <section id="about" className="py-20 bg-secondary/20" ref={sectionRef}>
@@ -50,7 +72,7 @@ const About = () => {
               </p>
             </div>
 
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground hover-lift group">
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground hover-lift group" onClick={downloadResumeAsZip}>
               <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
               <span className="group-hover:text-shimmer transition-all duration-300">Download Full Resume</span>
             </Button>

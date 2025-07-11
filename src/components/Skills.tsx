@@ -3,6 +3,7 @@ import { Code, Palette, Database, Wrench } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import './SkillsAnimations.css'; // Import custom CSS for extra animations
 
 const Skills = () => {
   const { ref: sectionRef, isVisible } = useScrollReveal();
@@ -82,9 +83,11 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-background" ref={sectionRef}>
-      <div className="container mx-auto px-6">
-        <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}>
+    <section id="skills" className="py-20 bg-background relative overflow-hidden" ref={sectionRef}>
+      {/* Animated Background Gradient */}
+      <div className="absolute inset-0 z-0 animate-gradient bg-gradient-to-br from-primary/10 via-accent/10 to-background pointer-events-none" />
+      <div className="container mx-auto px-6 relative z-10">
+        <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'reveal-on-scroll revealed fade-in-up' : 'reveal-on-scroll'}`}> {/* fade-in-up for heading */}
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Skills & <span className="text-primary glow-text">Expertise</span>
           </h2>
@@ -101,14 +104,14 @@ const Skills = () => {
             return (
               <Card 
                 key={category.title} 
-                className={`${category.bgColor} ${category.borderColor} border-2 hover-lift hover-glow transition-all duration-800 ${
-                  isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'
-                }`}
+                className={`${category.bgColor} ${category.borderColor} border-2 hover-lift hover-glow transition-all duration-800 skill-card ${isVisible ? 'fade-in-up' : ''}`}
                 style={{ animationDelay: `${index * 0.2 + 0.2}s` }}
               >
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
-                    <IconComponent className={`h-6 w-6 ${category.color} float-animation`} />
+                    <span className="icon-anim-wrapper">
+                      <IconComponent className={`h-6 w-6 ${category.color} float-animation icon-anim`} />
+                    </span>
                     <span className="hover:text-shimmer transition-all duration-300">{category.title}</span>
                   </CardTitle>
                 </CardHeader>
@@ -124,12 +127,7 @@ const Skills = () => {
                         </div>
                         <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
                           <div 
-                            className={`h-2 rounded-full transition-all duration-1000 ease-out ${
-                              category.title === 'Frontend Development' ? 'bg-primary' :
-                              category.title === 'Backend Development' ? 'bg-accent' :
-                              category.title === 'Design & UX' ? 'bg-purple-400' :
-                              'bg-orange-400'
-                            }`}
+                            className={`h-2 rounded-full transition-all duration-1000 ease-out skill-bar ${isVisible ? 'bar-fill-bounce' : ''} ${category.title === 'Frontend Development' ? 'bg-primary' : category.title === 'Backend Development' ? 'bg-accent' : category.title === 'Design & UX' ? 'bg-purple-400' : 'bg-orange-400'}`}
                             style={{ 
                               width: isVisible ? `${skill.level}%` : '0%',
                               transitionDelay: `${skillIndex * 0.1 + 0.5}s`
@@ -146,14 +144,14 @@ const Skills = () => {
         </div>
 
         {/* Certifications */}
-        <div className={`text-center transition-all duration-800 delay-800 ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}>
+        <div className={`text-center transition-all duration-800 delay-800 ${isVisible ? 'reveal-on-scroll revealed fade-in-up' : 'reveal-on-scroll'}`}> {/* fade-in-up for certs */}
           <h3 className="text-2xl font-bold mb-6 text-accent text-shimmer">Certifications & Achievements</h3>
           <div className="flex flex-wrap justify-center gap-3">
             {certifications.map((cert, index) => (
               <Badge 
                 key={cert} 
                 variant="outline" 
-                className="text-sm py-2 px-4 border-primary/30 text-primary hover:bg-primary/10 transition-all duration-300 hover-lift hover-glow"
+                className={`text-sm py-2 px-4 border-primary/30 text-primary hover:bg-primary/10 transition-all duration-300 hover-lift hover-glow badge-anim ${isVisible ? 'fade-in-up' : ''}`}
                 style={{ animationDelay: `${index * 0.1 + 1}s` }}
               >
                 {cert}

@@ -7,7 +7,7 @@ const Footer = () => {
   const socialLinks = [
     {
       icon: Github,
-      href: 'https://github.com/voidsynth',
+      href: 'https://github.com/void-synth',
       label: 'GitHub'
     },
     {
@@ -17,7 +17,7 @@ const Footer = () => {
     },
     {
       icon: Mail,
-      href: 'mailto:contact@voidsynth.dev',
+      href: 'mailto:umarboluwatife01@gmail.com',
       label: 'Email'
     }
   ];

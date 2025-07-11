@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Test - VoidSynth</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .favicon-display {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .favicon-size {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+    <h1>VoidSynth Favicon Test</h1>
+    
+    <div class="test-section">
+        <h2>Favicon Display Test</h2>
+        <div class="favicon-display">
+            <div class="favicon-size">
+                <img src="/favicon.svg" alt="32x32" width="32" height="32">
+                <div>32x32</div>
+            </div>
+            <div class="favicon-size">
+                <img src="/favicon.svg" alt="64x64" width="64" height="64">
+                <div>64x64</div>
+            </div>
+            <div class="favicon-size">
+                <img src="/favicon.svg" alt="128x128" width="128" height="128">
+                <div>128x128</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>File Status</h2>
+        <div id="fileStatus"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Instructions</h2>
+        <p>1. Check if you can see the favicon in your browser tab</p>
+        <p>2. If not visible, try refreshing the page (Ctrl+F5)</p>
+        <p>3. Check browser developer tools for any console errors</p>
+        <p>4. Verify the favicon files exist in the public directory</p>
+    </div>
+
+    <script>
+        // Test if favicon files are accessible
+        async function testFaviconFiles() {
+            const statusDiv = document.getElementById('fileStatus');
+            
+            try {
+                const svgResponse = await fetch('/favicon.svg');
+                if (svgResponse.ok) {
+                    statusDiv.innerHTML += '<div class="status success">✅ SVG favicon is accessible</div>';
+                } else {
+                    statusDiv.innerHTML += '<div class="status error">❌ SVG favicon not accessible</div>';
+                }
+            } catch (error) {
+                statusDiv.innerHTML += '<div class="status error">❌ Error accessing SVG favicon: ' + error.message + '</div>';
+            }
+
+            try {
+                const icoResponse = await fetch('/favicon.ico');
+                if (icoResponse.ok) {
+                    statusDiv.innerHTML += '<div class="status success">✅ ICO favicon is accessible</div>';
+                } else {
+                    statusDiv.innerHTML += '<div class="status error">❌ ICO favicon not accessible</div>';
+                }
+            } catch (error) {
+                statusDiv.innerHTML += '<div class="status error">❌ Error accessing ICO favicon: ' + error.message + '</div>';
+            }
+        }
+
+        testFaviconFiles();
+    </script>
+</body>
+</html> 
