@@ -17,7 +17,6 @@ const Achievements = () => {
       borderColor: 'border-yellow-400/20',
       date: '2023',
       description: 'Developed advanced penetration testing toolkit with automated vulnerability scanning',
-      prize: '$10,000 + Mentorship Program',
       tech: ['Python', 'Cybersecurity', 'Shell Scripting']
     },
     {
@@ -29,7 +28,6 @@ const Achievements = () => {
       borderColor: 'border-yellow-400/20',
       date: '2023',
       description: 'Built blockchain-based document verification system with smart contracts',
-      prize: '$8,000 + Incubation Opportunity',
       tech: ['Solidity', 'Web3', 'React']
     },
     {
@@ -41,7 +39,6 @@ const Achievements = () => {
       borderColor: 'border-gray-400/20',
       date: '2023',
       description: 'Created AI-powered fintech solution for microfinance institutions',
-      prize: '$5,000 + Tech Partnership',
       tech: ['Django', 'Machine Learning', 'FinTech']
     },
     {
@@ -53,7 +50,6 @@ const Achievements = () => {
       borderColor: 'border-purple-400/20',
       date: '2023',
       description: 'Developed AI-assisted code generation tool for rapid prototyping',
-      prize: 'OpenAI Credits + Recognition',
       tech: ['OpenAI API', 'TypeScript', 'VS Code Extension']
     },
     {
@@ -65,14 +61,12 @@ const Achievements = () => {
       borderColor: 'border-green-400/20',
       date: '2024',
       description: 'Outstanding performance in software engineering capstone project',
-      prize: 'Certificate of Excellence',
       tech: ['Full-Stack Development', 'System Design', 'DevOps']
     }
   ];
 
   const stats = [
     { label: 'Hackathons Won', value: '3', icon: Trophy },
-    { label: 'Total Prize Money', value: '$23K+', icon: Award },
     { label: 'Competition Entries', value: '15+', icon: Medal },
     { label: 'Recognition Awards', value: '8', icon: Star }
   ];
@@ -91,7 +85,7 @@ const Achievements = () => {
         </div>
 
         {/* Stats Overview */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-16">
           {stats.map((stat, index) => {
             const IconComponent = stat.icon;
             return (
@@ -146,8 +140,8 @@ const Achievements = () => {
                   </div>
                 </CardHeader>
 
-                <CardContent className="grid md:grid-cols-3 gap-6">
-                  <div className="md:col-span-2 space-y-4">
+                <CardContent className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
                     <p className="text-muted-foreground leading-relaxed hover-glow">
                       {achievement.description}
                     </p>
@@ -166,13 +160,6 @@ const Achievements = () => {
                           </Badge>
                         ))}
                       </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <div>
-                      <h4 className="text-sm font-semibold text-accent mb-1 text-shimmer">Prize & Recognition</h4>
-                      <p className="text-sm text-muted-foreground hover-glow">{achievement.prize}</p>
                     </div>
                   </div>
                 </CardContent>

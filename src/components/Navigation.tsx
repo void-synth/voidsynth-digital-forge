@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import ThemeToggle from './ThemeToggle';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -12,7 +11,11 @@ const Navigation = () => {
     { label: 'Home', href: '#home' },
     { label: 'About', href: '#about' },
     { label: 'Skills', href: '#skills' },
+    { label: 'Experience', href: '#experience' },
     { label: 'Projects', href: '#projects' },
+    { label: 'Case Studies', href: '#case-studies' },
+    { label: 'Services', href: '#services' },
+    { label: 'Testimonials', href: '#testimonials' },
     { label: 'Achievements', href: '#achievements' },
     { label: 'Contact', href: '#contact' }
   ];
@@ -76,8 +79,6 @@ const Navigation = () => {
               </a>
             ))}
             
-            <ThemeToggle />
-            
             <Button 
               size="sm" 
               className="professional-button ml-4 professional-shadow"
@@ -87,9 +88,8 @@ const Navigation = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button and Theme Toggle */}
-          <div className="md:hidden flex items-center space-x-2">
-            <ThemeToggle />
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center">
             <Button
               variant="ghost"
               size="sm"
@@ -124,7 +124,7 @@ const Navigation = () => {
                 onClick={() => scrollToSection('#contact')}
               >
                 Hire Me
-            </Button>
+              </Button>
             </div>
           </div>
         )}
