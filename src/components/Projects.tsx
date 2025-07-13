@@ -116,16 +116,16 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" className="py-20 bg-secondary/20" ref={sectionRef}>
+    <section id="projects" className="py-20 bg-secondary/20 dark:bg-secondary/20" ref={sectionRef}>
       <div className="container mx-auto px-4 sm:px-6">
         <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Featured <span className="text-primary glow-text">Projects</span>
+            Featured <span className="professional-text">Projects</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             A showcase of innovative solutions that blend cutting-edge technology with user-centered design
           </p>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mt-6 glow-pulse" />
+          <div className="section-divider" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -135,7 +135,7 @@ const Projects = () => {
               <Card 
                 key={project.title} 
                 ref={cardRef}
-                className={`group bg-card/50 border-muted/20 hover:border-primary/30 transition-all duration-500 overflow-hidden hover-lift hover-glow tilt-card ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}
+                className={`group professional-card border-muted/20 hover:border-primary/30 transition-all duration-500 overflow-hidden hover-lift hover-glow tilt-card professional-shadow ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}
                 style={{ animationDelay: `${index * 0.2 + 0.2}s` }}
                 onMouseMove={e => handleTilt(e, cardRef)}
                 onMouseLeave={() => resetTilt(cardRef)}

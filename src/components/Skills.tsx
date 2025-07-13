@@ -110,12 +110,12 @@ const Skills = () => {
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'reveal-on-scroll revealed fade-in-up' : 'reveal-on-scroll'}`}> {/* fade-in-up for heading */}
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Skills & <span className="text-primary glow-text">Expertise</span>
+            Skills & <span className="professional-text">Expertise</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             A comprehensive toolkit for creating exceptional digital experiences
           </p>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mt-6 glow-pulse" />
+          <div className="section-divider" />
         </div>
 
         {/* Skills Grid */}
@@ -127,7 +127,7 @@ const Skills = () => {
               <Card 
                 key={category.title} 
                 ref={cardRef}
-                className={`${category.bgColor} ${category.borderColor} border-2 hover-lift hover-glow transition-all duration-800 skill-card tilt-card ${isVisible ? 'fade-in-up' : ''}`}
+                className={`${category.bgColor} ${category.borderColor} border-2 hover-lift hover-glow transition-all duration-800 skill-card tilt-card professional-card professional-shadow ${isVisible ? 'fade-in-up' : ''}`}
                 style={{ animationDelay: `${index * 0.2 + 0.2}s` }}
                 onMouseMove={e => handleTilt(e, cardRef)}
                 onMouseLeave={() => resetTilt(cardRef)}

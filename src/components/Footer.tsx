@@ -37,15 +37,15 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-card/30 border-t border-border/50">
+    <footer className="bg-card/30 border-t border-border/50 dark:bg-card/30">
       <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="md:col-span-2 flex flex-col items-start">
             <div className="mb-4">
               <h3 className="text-2xl font-bold font-mono">
-                <span className="text-primary glow-text">Void</span>
-                <span className="text-accent">Synth</span>
+                <span className="professional-text">Void</span>
+                <span className="accent-text">Synth</span>
               </h3>
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">

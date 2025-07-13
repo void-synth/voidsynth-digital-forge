@@ -3,48 +3,105 @@
 @tailwind components;
 @tailwind utilities;
 
-/* VoidSynth Portfolio Design System */
+/* VoidSynth Portfolio Design System - Senior Developer Edition */
 
 @layer base {
   :root {
-    --background: 220 13% 9%;
+    /* Light Mode Colors - Sophisticated & Professional */
+    --background: 0 0% 98%;
+    --foreground: 222 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 4.9%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 84% 4.9%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 142 76% 36%;
+    --accent-foreground: 222 84% 4.9%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 84% 4.9%;
+    --sidebar-primary: 221 83% 53%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 84% 4.9%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 221 83% 53%;
+
+    /* Light Mode Specific Gradients - Subtle & Professional */
+    --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    --gradient-secondary: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    --gradient-accent: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    --gradient-subtle: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    --gradient-card: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    --gradient-border: linear-gradient(45deg, #e2e8f0, #cbd5e1);
+  }
+
+  .dark {
+    /* Dark Mode Colors - Sophisticated & Professional */
+    --background: 220 13% 6%;
     --foreground: 220 9% 95%;
 
-    --card: 220 13% 12%;
+    --card: 220 13% 10%;
     --card-foreground: 220 9% 95%;
 
-    --popover: 220 13% 12%;
+    --popover: 220 13% 10%;
     --popover-foreground: 220 9% 95%;
 
     --primary: 217 91% 60%;
-    --primary-foreground: 220 13% 9%;
+    --primary-foreground: 220 13% 6%;
 
-    --secondary: 220 13% 15%;
+    --secondary: 220 13% 12%;
     --secondary-foreground: 220 9% 95%;
 
-    --muted: 220 13% 15%;
+    --muted: 220 13% 12%;
     --muted-foreground: 220 9% 65%;
 
     --accent: 142 76% 36%;
-    --accent-foreground: 220 13% 9%;
+    --accent-foreground: 220 13% 6%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 220 9% 95%;
 
     --border: 220 13% 20%;
-    --input: 220 13% 15%;
+    --input: 220 13% 12%;
     --ring: 217 91% 60%;
 
-    --radius: 0.5rem;
-
-    --sidebar-background: 220 13% 9%;
+    --sidebar-background: 220 13% 6%;
     --sidebar-foreground: 220 9% 95%;
     --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 220 13% 9%;
-    --sidebar-accent: 220 13% 15%;
+    --sidebar-primary-foreground: 220 13% 6%;
+    --sidebar-accent: 220 13% 12%;
     --sidebar-accent-foreground: 220 9% 95%;
     --sidebar-border: 220 13% 20%;
     --sidebar-ring: 217 91% 60%;
+
+    /* Dark Mode Specific Gradients - Subtle & Professional */
+    --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+    --gradient-secondary: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    --gradient-accent: linear-gradient(135deg, #10b981 0%, #047857 100%);
+    --gradient-subtle: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    --gradient-card: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    --gradient-border: linear-gradient(45deg, #334155, #475569);
   }
 }
 
@@ -54,7 +111,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased transition-colors duration-300;
   }
 
   html {
@@ -63,68 +120,87 @@
 }
 
 @layer components {
-  .glow-text {
-    text-shadow: 0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--primary));
+  /* Professional Text Effects */
+  .professional-text {
+    color: hsl(var(--primary));
+    font-weight: 600;
   }
 
-  .neon-border {
-    border: 1px solid hsl(var(--primary));
-    box-shadow: 0 0 5px hsl(var(--primary)), inset 0 0 5px hsl(var(--primary));
+  .accent-text {
+    color: hsl(var(--accent));
+    font-weight: 600;
+  }
+
+  /* Subtle Hover Effects */
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .hover-lift:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .hover-glow {
     transition: all 0.3s ease;
   }
 
-  .neon-border:hover {
-    box-shadow: 0 0 15px hsl(var(--primary)), inset 0 0 10px hsl(var(--primary));
+  .hover-glow:hover {
+    filter: brightness(1.05);
+    transform: scale(1.01);
   }
 
-  .cyber-grid {
-    background-image: 
-      linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: grid-move 20s linear infinite;
+  /* Professional Card Styles */
+  .professional-card {
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
   }
 
-  @keyframes grid-move {
-    0% { background-position: 0 0; }
-    100% { background-position: 50px 50px; }
+  .professional-card:hover {
+    border-color: hsl(var(--primary));
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
-  .typewriter {
-    border-right: 2px solid hsl(var(--primary));
-    animation: blink 1s infinite;
+  .dark .professional-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
-  @keyframes blink {
-    0%, 50% { border-color: hsl(var(--primary)); }
-    51%, 100% { border-color: transparent; }
+  /* Professional Button Styles */
+  .professional-button {
+    background: var(--gradient-primary);
+    border: none;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
   }
 
-  @keyframes glow-pulse {
-    0%, 100% { box-shadow: 0 0 5px hsl(var(--primary)), 0 0 10px hsl(var(--primary)); }
-    50% { box-shadow: 0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary)), 0 0 30px hsl(var(--primary)); }
+  .professional-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
   }
 
-  .glow-pulse {
-    animation: glow-pulse 2s ease-in-out infinite;
+  /* Subtle Animations */
+  @keyframes fade-in-up {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
   }
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-  }
-
-  .float-animation {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  @keyframes rotate-slow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .rotate-slow {
-    animation: rotate-slow 20s linear infinite;
+  .fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
   }
 
   @keyframes slide-up {
@@ -137,7 +213,7 @@
   }
 
   @keyframes scale-in {
-    from { transform: scale(0.8); opacity: 0; }
+    from { transform: scale(0.95); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
   }
 
@@ -145,6 +221,7 @@
     animation: scale-in 0.5s ease-out forwards;
   }
 
+  /* Stagger Animations */
   .stagger-1 { animation-delay: 0.1s; }
   .stagger-2 { animation-delay: 0.2s; }
   .stagger-3 { animation-delay: 0.3s; }
@@ -152,73 +229,128 @@
   .stagger-5 { animation-delay: 0.5s; }
   .stagger-6 { animation-delay: 0.6s; }
 
-  .hover-lift {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Professional Grid Background */
+  .professional-grid {
+    background-image: 
+      linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
   }
 
-  .hover-lift:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  .dark .professional-grid {
+    background-image: 
+      linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
   }
 
-  .hover-glow {
-    transition: all 0.3s ease;
+  /* Professional Typewriter Effect */
+  .typewriter {
+    border-right: 2px solid hsl(var(--primary));
+    animation: blink 1s infinite;
   }
 
-  .hover-glow:hover {
-    filter: brightness(1.1);
-    transform: scale(1.02);
+  @keyframes blink {
+    0%, 50% { border-color: hsl(var(--primary)); }
+    51%, 100% { border-color: transparent; }
   }
 
-  .text-shimmer {
-    background: linear-gradient(90deg, hsl(var(--foreground)) 25%, hsl(var(--primary)) 50%, hsl(var(--foreground)) 75%);
-    background-size: 200% 100%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shimmer 2s ease-in-out infinite;
+  /* Professional Progress Bars */
+  .professional-progress {
+    background: hsl(var(--muted));
+    border-radius: 9999px;
+    overflow: hidden;
   }
 
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
+  .professional-progress-bar {
+    height: 100%;
+    background: var(--gradient-primary);
+    border-radius: 9999px;
+    transition: width 1s ease-out;
   }
 
-  .gradient-border {
-    position: relative;
-    background: hsl(var(--card));
-    border-radius: var(--radius);
+  /* Professional Section Dividers */
+  .section-divider {
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+    margin: 1.5rem auto;
   }
 
-  .gradient-border::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    padding: 2px;
-    background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)));
-    border-radius: inherit;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    animation: border-spin 3s linear infinite;
+  /* Professional Floating Elements */
+  .floating-element {
+    animation: float 3s ease-in-out infinite;
   }
 
-  @keyframes border-spin {
-    to { transform: rotate(360deg); }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
   }
 
-  .parallax-element {
-    transform: translateZ(0);
-    transition: transform 0.1s ease-out;
-  }
-
+  /* Professional Reveal Animations */
   .reveal-on-scroll {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(30px);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .reveal-on-scroll.revealed {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* Professional Tilt Effect */
+  .tilt-card {
+    transition: transform 0.1s ease-out;
+  }
+
+  /* Theme Transition */
+  .theme-transition {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Professional Gradient Backgrounds */
+  .gradient-bg-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-bg-secondary {
+    background: var(--gradient-secondary);
+  }
+
+  .gradient-bg-accent {
+    background: var(--gradient-accent);
+  }
+
+  .gradient-bg-subtle {
+    background: var(--gradient-subtle);
+  }
+
+  /* Professional Border Effects */
+  .professional-border {
+    border: 1px solid hsl(var(--border));
+    transition: border-color 0.3s ease;
+  }
+
+  .professional-border:hover {
+    border-color: hsl(var(--primary));
+  }
+
+  /* Professional Shadow Effects */
+  .professional-shadow {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .professional-shadow:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .dark .professional-shadow {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .dark .professional-shadow:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   }
 }

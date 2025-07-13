@@ -128,16 +128,16 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-secondary/20 contact-animate">
+    <section id="contact" className="py-20 bg-secondary/20 dark:bg-secondary/20 contact-animate">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Let's <span className="text-primary glow-text">Connect</span>
+            Let's <span className="professional-text">Connect</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Ready to bring your ideas to life? Let's discuss how we can create something amazing together.
           </p>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mt-6" />
+          <div className="section-divider" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -160,7 +160,7 @@ const Contact = () => {
                   <a
                     key={info.label}
                     href={info.href}
-                    className="flex items-center gap-4 p-4 rounded-lg bg-card/30 border border-muted/20 hover:border-primary/30 transition-all duration-300 group"
+                    className="flex items-center gap-4 p-4 rounded-lg bg-card/30 border border-muted/20 hover:border-primary/30 transition-all duration-300 group professional-card professional-shadow"
                   >
                     <div className="p-2 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
                       <IconComponent className="h-5 w-5 text-primary" />
@@ -188,7 +188,7 @@ const Contact = () => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`p-3 rounded-full bg-card/30 border border-muted/20 hover:border-primary/30 transition-all duration-300 ${social.color}`}
+                      className={`p-3 rounded-full bg-card/30 border border-muted/20 hover:border-primary/30 transition-all duration-300 ${social.color} professional-card professional-shadow`}
                       aria-label={social.label}
                     >
                       <IconComponent className="h-5 w-5" />

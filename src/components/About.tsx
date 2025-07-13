@@ -30,13 +30,13 @@ const About = () => {
   }
 
   return (
-    <section id="about" className="py-20 bg-secondary/20" ref={sectionRef}>
+    <section id="about" className="py-20 bg-secondary/20 dark:bg-secondary/20" ref={sectionRef}>
       <div className="container mx-auto px-4 sm:px-6">
         <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            About <span className="text-primary glow-text">VoidSynth</span>
+            About <span className="professional-text">VoidSynth</span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full glow-pulse" />
+          <div className="section-divider" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -64,24 +64,24 @@ const About = () => {
             </div>
 
             {/* Mission Statement */}
-            <div className="gradient-border bg-card/50 p-6 rounded-lg hover-lift">
-              <h3 className="text-xl font-semibold text-primary mb-3 text-shimmer">Mission</h3>
+            <div className="professional-card p-6 rounded-lg hover-lift professional-shadow">
+              <h3 className="text-xl font-semibold professional-text mb-3">Mission</h3>
               <p className="text-muted-foreground italic">
                 "To create digital experiences that blend aesthetic beauty with functional excellence, 
                 while contributing to the growth of Africa's technology ecosystem."
               </p>
             </div>
 
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground hover-lift group" onClick={downloadResumeAsZip}>
+            <Button className="professional-button hover-lift group professional-shadow" onClick={downloadResumeAsZip}>
               <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
-              <span className="group-hover:text-shimmer transition-all duration-300">Download Full Resume</span>
+              <span className="group-hover:text-white transition-all duration-300">Download Full Resume</span>
             </Button>
           </div>
 
           {/* ALX Badge & Stats */}
           <div className={`space-y-6 transition-all duration-800 delay-400 ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}>
             {/* ALX Graduate Badge */}
-            <Card className="bg-gradient-to-br from-primary/10 to-accent/10 border-primary/20 hover-lift hover-glow">
+            <Card className="bg-gradient-to-br from-primary/10 to-accent/10 border-primary/20 hover-lift hover-glow light-mode-card">
               <CardContent className="p-6 text-center">
                 <div className="mb-4">
                   <Award className="h-12 w-12 text-primary mx-auto mb-2 float-animation" />
@@ -98,28 +98,28 @@ const About = () => {
 
             {/* Key Stats */}
             <div className="grid grid-cols-2 gap-4">
-              <Card className="bg-card/50 border-accent/20 hover-lift hover-glow">
+              <Card className="bg-card/50 border-accent/20 hover-lift hover-glow light-mode-card">
                 <CardContent className="p-4 text-center">
                   <div className="text-2xl font-bold text-accent mb-1 text-shimmer">15+</div>
                   <div className="text-sm text-muted-foreground">Projects Completed</div>
                 </CardContent>
               </Card>
               
-              <Card className="bg-card/50 border-primary/20 hover-lift hover-glow">
+              <Card className="bg-card/50 border-primary/20 hover-lift hover-glow light-mode-card">
                 <CardContent className="p-4 text-center">
                   <div className="text-2xl font-bold text-primary mb-1 text-shimmer">5</div>
                   <div className="text-sm text-muted-foreground">Hackathon Wins</div>
                 </CardContent>
               </Card>
               
-              <Card className="bg-card/50 border-accent/20 hover-lift hover-glow">
+              <Card className="bg-card/50 border-accent/20 hover-lift hover-glow light-mode-card">
                 <CardContent className="p-4 text-center">
                   <div className="text-2xl font-bold text-accent mb-1 text-shimmer">3+</div>
                   <div className="text-sm text-muted-foreground">Years Experience</div>
                 </CardContent>
               </Card>
               
-              <Card className="bg-card/50 border-primary/20 hover-lift hover-glow">
+              <Card className="bg-card/50 border-primary/20 hover-lift hover-glow light-mode-card">
                 <CardContent className="p-4 text-center">
                   <div className="text-2xl font-bold text-primary mb-1 text-shimmer">50+</div>
                   <div className="text-sm text-muted-foreground">Satisfied Clients</div>
@@ -128,7 +128,7 @@ const About = () => {
             </div>
 
             {/* Origin Story */}
-            <Card className="bg-card/30 border-muted/20 hover-lift hover-glow">
+            <Card className="bg-card/30 border-muted/20 hover-lift hover-glow light-mode-card">
               <CardContent className="p-6">
                 <h4 className="font-semibold text-accent mb-3 flex items-center">
                   <ExternalLink className="h-4 w-4 mr-2 float-animation" />

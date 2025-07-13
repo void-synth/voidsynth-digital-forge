@@ -82,12 +82,12 @@ const Achievements = () => {
       <div className="container mx-auto px-6">
         <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'}`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Achievements & <span className="text-primary glow-text">Recognition</span>
+            Achievements & <span className="professional-text">Recognition</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Celebrating excellence in innovation, competition, and technical mastery
           </p>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mt-6 glow-pulse" />
+          <div className="section-divider" />
         </div>
 
         {/* Stats Overview */}
@@ -97,7 +97,7 @@ const Achievements = () => {
             return (
               <Card 
                 key={stat.label} 
-                className={`bg-card/30 border-muted/20 text-center hover-lift hover-glow transition-all duration-800 ${
+                className={`bg-card/30 border-muted/20 text-center hover-lift hover-glow transition-all duration-800 professional-card professional-shadow ${
                   isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'
                 }`}
                 style={{ animationDelay: `${index * 0.1 + 0.2}s` }}
@@ -119,7 +119,7 @@ const Achievements = () => {
             return (
               <Card 
                 key={achievement.title} 
-                className={`${achievement.bgColor} ${achievement.borderColor} border-2 hover-lift hover-glow transition-all duration-800 ${
+                className={`${achievement.bgColor} ${achievement.borderColor} border-2 hover-lift hover-glow transition-all duration-800 professional-card professional-shadow ${
                   isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'
                 }`}
                 style={{ animationDelay: `${index * 0.2 + 0.6}s` }}
@@ -182,10 +182,10 @@ const Achievements = () => {
         </div>
 
         {/* Call to Action */}
-        <div className={`text-center mt-16 p-8 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg hover-lift hover-glow transition-all duration-800 delay-1200 ${
+        <div className={`text-center mt-16 p-8 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg hover-lift hover-glow transition-all duration-800 delay-1200 professional-card professional-shadow ${
           isVisible ? 'reveal-on-scroll revealed' : 'reveal-on-scroll'
         }`}>
-          <h3 className="text-2xl font-bold mb-4 text-shimmer">Ready to Create Something Amazing?</h3>
+          <h3 className="text-2xl font-bold mb-4 professional-text">Ready to Create Something Amazing?</h3>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
             With a proven track record of winning competitions and delivering innovative solutions, 
             I'm ready to bring that same excellence to your next project.

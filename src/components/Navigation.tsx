@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ThemeToggle from './ThemeToggle';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -53,8 +54,8 @@ const Navigation = () => {
               }}
               className="text-2xl font-bold font-mono"
             >
-              <span className="text-primary glow-text">Void</span>
-              <span className="text-accent">Synth</span>
+              <span className="professional-text">Void</span>
+              <span className="accent-text">Synth</span>
             </a>
           </div>
 
@@ -75,24 +76,28 @@ const Navigation = () => {
               </a>
             ))}
             
+            <ThemeToggle />
+            
             <Button 
               size="sm" 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground ml-4"
+              className="professional-button ml-4 professional-shadow"
               onClick={() => scrollToSection('#contact')}
             >
               Hire Me
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            className="md:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+          {/* Mobile Menu Button and Theme Toggle */}
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -115,11 +120,11 @@ const Navigation = () => {
               
               <Button 
                 size="sm" 
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground mt-4"
+                className="w-full professional-button mt-4 professional-shadow"
                 onClick={() => scrollToSection('#contact')}
               >
                 Hire Me
-              </Button>
+            </Button>
             </div>
           </div>
         )}

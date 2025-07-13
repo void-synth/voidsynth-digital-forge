@@ -77,10 +77,10 @@ const Hero = () => {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid px-2 sm:px-4">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden professional-grid px-2 sm:px-4">
       <div className="animated-bg" />
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-transparent to-accent/3 dark:from-primary/5 dark:via-transparent dark:to-accent/5" />
       
       {/* Animated Cursor Follower */}
       <div 
@@ -96,10 +96,10 @@ const Hero = () => {
           {/* Logo/Brand */}
           <div className="mb-8">
             <h1 className="text-6xl md:text-8xl font-bold font-mono mb-4 hover-glow hero-3d-title">
-              <span className="text-primary glow-text text-shimmer">Void</span>
-              <span className="text-accent float-animation">Synth</span>
+              <span className="professional-text">Void</span>
+              <span className="accent-text floating-element">Synth</span>
             </h1>
-            <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full glow-pulse" />
+            <div className="section-divider" />
           </div>
 
           {/* Main Tagline */}
@@ -120,20 +120,20 @@ const Hero = () => {
             <Button 
               size="lg" 
               onClick={scrollToProjects}
-              className="neon-border bg-primary/10 hover:bg-primary/20 text-primary font-semibold px-8 py-3 transition-all duration-300 hover-lift group"
+              className="professional-button font-semibold px-8 py-3 transition-all duration-300 hover-lift group professional-shadow"
             >
-              <span className="group-hover:text-shimmer transition-all duration-300">View Projects</span>
+              <span className="group-hover:text-white transition-all duration-300">View Projects</span>
               <ArrowDown className="ml-2 h-5 w-5 group-hover:animate-bounce" />
             </Button>
             
             <Button 
               size="lg" 
               variant="outline"
-              className="border-accent text-accent hover:bg-accent hover:text-accent-foreground font-semibold px-8 py-3 transition-all duration-300 hover-lift group"
+              className="professional-card border-accent text-accent hover:bg-accent hover:text-accent-foreground font-semibold px-8 py-3 transition-all duration-300 hover-lift group professional-shadow"
               onClick={downloadResumeAsZip}
             >
               <Download className="mr-2 h-5 w-5 group-hover:animate-pulse" />
-              <span className="group-hover:text-shimmer transition-all duration-300">Download Resume</span>
+              <span className="group-hover:text-accent transition-all duration-300">Download Resume</span>
             </Button>
           </div>
 
